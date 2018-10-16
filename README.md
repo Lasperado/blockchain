@@ -1,4 +1,10 @@
-# Learn Blockchains by Building One
+# 支持中文的简易区块链
+1. 增加blockmsg，可输入任意内容，支持中文；
+2. 增加中文支持。
+
+以下为原readme
+
+# Learn Blockchains by Building One
 
 [![Build Status](https://travis-ci.org/dvf/blockchain.svg?branch=master)](https://travis-ci.org/dvf/blockchain)
 
