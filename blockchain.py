@@ -121,7 +121,7 @@ class Blockchain:
         self.chain.append(block)
         return block
 
-    def new_transaction(self, sender, recipient, amount):
+    def new_transaction(self, sender, recipient, amount, blockmsg):
         """
         Creates a new transaction to go into the next mined Block
 
@@ -134,6 +134,7 @@ class Blockchain:
             'sender': sender,
             'recipient': recipient,
             'amount': amount,
+            'blockmsg': blockmsg
         })
 
         return self.last_block['index'] + 1
@@ -213,6 +214,7 @@ def mine():
         sender="0",
         recipient=node_identifier,
         amount=1,
+        blockmsg = 'New block mined by Node X.'
     )
 
     # Forge the new Block by adding it to the chain
@@ -239,7 +241,7 @@ def new_transaction():
         return 'Missing values', 400
 
     # Create a new Transaction
-    index = blockchain.new_transaction(values['sender'], values['recipient'], values['amount'])
+    index = blockchain.new_transaction(values['sender'], values['recipient'], values['amount'], values['blockmsg'])
 
     response = {'message': f'Transaction will be added to Block {index}'}
     return jsonify(response), 201
@@ -298,4 +300,5 @@ if __name__ == '__main__':
     args = parser.parse_args()
     port = args.port
 
+    app.config['JSON_AS_ASCII'] = False
     app.run(host='0.0.0.0', port=port)
